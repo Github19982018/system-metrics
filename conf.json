@@ -1,0 +1,17 @@
+{
+    "appname": "system-metrics",
+  "sleep_interval":"10s",
+  "influxdb_conn": {
+    "host": "http://localhost:8086",
+    "token":"8cQZYLsHnRWIix4O1mVBDm3Br3WUEkiHmjEGMg1lUObUZUUgB96HbZ6y4v2542YqAfeDyye4TFFLo7C-IolYuA==",
+    "bucket":"system-metrics",
+    "measurement":"system-metrics",
+    "org":"seaker"
+  },
+"path_map": {
+    "influxd_disk_gb": "/var/lib/influxdb",
+    "mongodb_disk_gb": "/var/lib/mongodb",
+    "rabbitmq_disk_gb": "/var/lib/rabbitmq",
+    "syslog_disk_gb": "/var/log"
+}
+  }

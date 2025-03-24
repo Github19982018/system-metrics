@@ -40,7 +40,7 @@ fn read_system(source_hashmap: &mut HashMap<String, HashMap<String, f64>>) {
     );
     tags_hashmap.insert(
         "system_available_cpu_percent ".to_string(),
-        (100 - sys.global_cpu_usage() as i32) as f64,
+        100.0 as f64 - sys.global_cpu_usage() as f64,
     );
     source_hashmap.insert(source_tag, tags_hashmap);
 
@@ -72,13 +72,6 @@ fn read_system(source_hashmap: &mut HashMap<String, HashMap<String, f64>>) {
     );
 
 
-    std::thread::sleep(sysinfo::MINIMUM_CPU_UPDATE_INTERVAL);
-// Refresh CPU usage to get actual value.
-    sys.refresh_processes_specifics(
-        ProcessesToUpdate::All,
-        true,
-        ProcessRefreshKind::nothing().with_cpu()
-    );
     let mut ram_usage: u64 = 0;
     let mut cpu_usage: f32 = 0.0;
     for process in sys.processes_by_name("influxd".as_ref()) {
@@ -94,14 +87,7 @@ fn read_system(source_hashmap: &mut HashMap<String, HashMap<String, f64>>) {
         cpu_usage as f64,
     );
 
-
-    std::thread::sleep(sysinfo::MINIMUM_CPU_UPDATE_INTERVAL);
-    // Refresh CPU usage to get actual value.
-        sys.refresh_processes_specifics(
-            ProcessesToUpdate::All,
-            true,
-            ProcessRefreshKind::nothing().with_cpu()
-        );    
+    
     let mut ram_usage: u64 = 0;
     let mut cpu_usage: f32 = 0.0;
     for process in sys.processes_by_exact_name("nmea-parser".as_ref()) {

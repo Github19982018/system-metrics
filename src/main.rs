@@ -36,8 +36,8 @@ async fn main() {
     // logging::log_init(appname);
     logg::log_init(appname.as_str());
     // logging::initiate_logging(appname);
-    info!("first info");
-    error!("first error");
+    // info!("first info");
+    // error!("first error");
     let influxdb_connection: InfluxdbDetails;
     let mut path_map: HashMap<String, String> = HashMap::new();
 
